@@ -1,38 +1,38 @@
 <?php
 namespace JacobAGTyler\GitHubIssueSubmitter\Test\TestCase\Form;
 
+use App\Form\IssueForm;
 use Cake\Http\Client;
 use Cake\TestSuite\TestCase;
-use App\Form\IssueForm;
 
 /**
  * JacobAGTyler\GitHubIssueSubmitter\Form\IssueForm Test Case
  */
 class IssueFormTest extends TestCase
 {
-	private $mockLogger;
-	private $mockClient;
-	private $linkService;
+    private $mockLogger;
+    private $mockClient;
+    private $linkService;
 
-	public function prepareMocks($url, $json)
-	{
-		$responseInterface = $this->getMockBuilder('\Guzzle\Http\Message\Response')
-		                          ->disableOriginalConstructor()
-		                          ->getMock();
-		$responseInterface->method('getBody')
-		                  ->with($this->equalTo(true))
-		                  ->will($this->returnValue($json));
+    public function prepareMocks($url, $json)
+    {
+        $responseInterface = $this->getMockBuilder('\Guzzle\Http\Message\Response')
+                                  ->disableOriginalConstructor()
+                                  ->getMock();
+        $responseInterface->method('getBody')
+                          ->with($this->equalTo(true))
+                          ->will($this->returnValue($json));
 
-		$requestInterface = $this->getMockBuilder('Cake\Http\Client')->getMock();
-		$requestInterface->method('post')->will($this->returnValue($responseInterface));
+        $requestInterface = $this->getMockBuilder('Cake\Http\Client')->getMock();
+        $requestInterface->method('post')->will($this->returnValue($responseInterface));
 
-		$this->mockClient = $this->getMock('\Guzzle\Http\Client');
+        $this->mockClient = $this->getMock('\Guzzle\Http\Client');
 
-		$this->mockClient->method('get')
-		                 ->with($this->equalTo($url))
-		                 ->will($this->returnValue($requestInterface));
-		$this->linkService = new DefaultPreviewImageLinkService($this->mockLogger, $this->mockClient);
-	}
+        $this->mockClient->method('get')
+                         ->with($this->equalTo($url))
+                         ->will($this->returnValue($requestInterface));
+        $this->linkService = new DefaultPreviewImageLinkService($this->mockLogger, $this->mockClient);
+    }
 
     /**
      * Test subject
@@ -79,10 +79,10 @@ class IssueFormTest extends TestCase
      */
     public function testExecute()
     {
-	    $this->markTestIncomplete('Not implemented yet.');
+        $this->markTestIncomplete('Not implemented yet.');
 
-		$url = 'https://api.github.com/repos/CubScoutCake/DistrictUserUploader/issues';
-	    $json = '{
+        $url = 'https://api.github.com/repos/CubScoutCake/DistrictUserUploader/issues';
+        $json = '{
 				    "url": "https://api.github.com/repos/CubScoutCake/DistrictUserUploader/issues/23",
 				    "repository_url": "https://api.github.com/repos/CubScoutCake/DistrictUserUploader",
 				    "labels_url": "https://api.github.com/repos/CubScoutCake/DistrictUserUploader/issues/23/labels{/name}",
@@ -140,14 +140,14 @@ class IssueFormTest extends TestCase
 				    "body": "The issue has been created via the API as a test of a Form Creation.",
 				    "closed_by": null
 				}';
-	    $this->prepareMocks($url, $json);
+        $this->prepareMocks($url, $json);
 
-    	$dataArray = [
-    		'issue' => 'Test Issue for Auto Test.',
-		    'description' => 'This issue is created as part of a suite of automated tests.'
-	    ];
-    	$response = $this->Issue->execute($dataArray);
+        $dataArray = [
+            'issue' => 'Test Issue for Auto Test.',
+            'description' => 'This issue is created as part of a suite of automated tests.'
+        ];
+        $response = $this->Issue->execute($dataArray);
 
-    	$this->assertTrue($response);
+        $this->assertTrue($response);
     }
 }
