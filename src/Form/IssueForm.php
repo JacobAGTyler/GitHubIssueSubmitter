@@ -73,19 +73,19 @@ class IssueForm extends Form
 
         if (!($apiToken = Configure::readOrFail('GitHub.personal_token'))) {
             return false;
-        };
+        }
         if (!($apiUser = Configure::readOrFail('GitHub.personal_user'))) {
             return false;
-        };
+        }
         if (!($apiRepoOwner = Configure::readOrFail('GitHub.repo_owner'))) {
             return false;
-        };
+        }
         if (!($apiRepoName = Configure::readOrFail('GitHub.repo_name'))) {
             return false;
-        };
+        }
         if (!($apiBase = Configure::readOrFail('GitHub.root_url'))) {
             return false;
-        };
+        }
 
         $requestAction = '/repos/' . $apiRepoOwner . '/' . $apiRepoName . '/issues';
 
