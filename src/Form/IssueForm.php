@@ -1,5 +1,5 @@
 <?php
-namespace JacobAGTyler\GitHubIssueSubmitter\Form;
+namespace App\Form;
 
 use Cake\Core\Configure;
 use Cake\Form\Form;

@@ -3,7 +3,7 @@ namespace JacobAGTyler\GitHubIssueSubmitter\Test\TestCase\Form;
 
 use Cake\Http\Client;
 use Cake\TestSuite\TestCase;
-use JacobAGTyler\GitHubIssueSubmitter\Form\IssueForm;
+use App\Form\IssueForm;
 
 /**
  * JacobAGTyler\GitHubIssueSubmitter\Form\IssueForm Test Case
